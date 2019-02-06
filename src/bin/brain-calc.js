@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import { displayGreeting, displayGameDescription, playBrainCalc } from '..';
+import { playBrainCalc } from '..';
 
-displayGreeting();
-displayGameDescription('brain-calc');
 playBrainCalc();

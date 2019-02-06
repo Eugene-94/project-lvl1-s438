@@ -59,6 +59,9 @@ const isCorrectAnswer = (number, answer) => {
 };
 
 export const playBrainEven = () => {
+  displayGreeting();
+  displayGameDescription('brain-even');
+
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
@@ -83,6 +86,9 @@ export const playBrainEven = () => {
 };
 
 export const playBrainCalc = () => {
+  displayGreeting();
+  displayGameDescription('brain-calc');
+
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
