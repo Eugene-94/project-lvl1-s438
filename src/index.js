@@ -1,12 +1,24 @@
 import readlineSync from 'readline-sync';
 
-const roundLength = 3;
+const questionsAmount = 3;
 const minNumber = 0;
 const maxNumber = 100;
 export const getGreeting = () => {
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 };
+
+export const displayGreeting = () => console.log('Welcome to the Brain Games!');
+
+export const displayGameDescription = (game) => {
+  switch (game) {
+    case 'brain-even':
+      console.log('Answer "yes" if number even otherwise answer "no".');
+      break;
+    default:
+  }
+};
+
 const getFailMessage = (user, answer, isEven) => {
   if (isEven) {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
@@ -16,29 +28,37 @@ const getFailMessage = (user, answer, isEven) => {
     console.log(`Let's try again, ${user}`);
   }
 };
-const getWinMessage = user => console.log(`Congratulations, ${user}`);
 
-export const isEven = num => num % 2 === 0;
+const isEven = num => num % 2 === 0;
 
-export const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-export const playGame = () => {
+const isCorrectAnswer = (number, answer) => {
+  if (isEven(number) && answer === 'yes') return true;
+  if (!isEven(number) && answer === 'no') return true;
+  return false;
+};
+
+export const playBrainEven = () => {
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
   const iter = (counter) => {
-    if (counter === roundLength) return getWinMessage(userName);
+    if (counter === questionsAmount) {
+      console.log(`Congratulations, ${userName}`);
+      return null;
+    }
 
-    const num = getRandom(minNumber, maxNumber);
-    console.log(`Question: ${num}`);
+    const randomNumber = getRandom(minNumber, maxNumber);
+    console.log(`Question: ${randomNumber}`);
 
-    const userResponse = readlineSync.question('Your answer: ');
+    const userAnswer = readlineSync.question('Your answer: ');
 
-    if ((isEven(num) && userResponse === 'yes') || (!isEven(num) && userResponse === 'no')) {
+    if (isCorrectAnswer(randomNumber, userAnswer)) {
       console.log('Correct!');
       return iter(counter + 1);
     }
-    return getFailMessage(userName, userResponse, isEven(num));
+    return getFailMessage(userName, userAnswer, isEven(randomNumber));
   };
   iter(0);
 };
