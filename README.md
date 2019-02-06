@@ -5,4 +5,4 @@
 ## brain-even
 
 ### Usage
-    [![asciicast](https://asciinema.org/a/225623.svg)](https://asciinema.org/a/225623)
+[![asciicast](https://asciinema.org/a/225625.png)](https://asciinema.org/a/225625)
