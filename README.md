@@ -8,3 +8,6 @@
 ## Usage
 ### brain-even
 [![asciicast](https://asciinema.org/a/225625.png)](https://asciinema.org/a/225625)
+
+### brain-calc
+[![asciicast](https://asciinema.org/a/225643.png)](https://asciinema.org/a/225643)
