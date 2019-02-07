@@ -1,17 +1,11 @@
 import readlineSync from 'readline-sync';
+import { car, cdr } from 'hexlet-pairs';
 
-const questionsAmount = 3;
-const minNumber = 0;
-const maxNumber = 100;
+export const questionsAmount = 3;
+export const minNumber = 1;
+export const maxNumber = 100;
 
-const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-export const getGreeting = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-};
-
-export const displayGreeting = () => console.log('Welcome to the Brain Games!');
+export const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 export const displayGameDescription = (game) => {
   switch (game) {
@@ -25,42 +19,9 @@ export const displayGameDescription = (game) => {
   }
 };
 
-const getFailMessage = (user, answer, isEven) => {
-  if (isEven) {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
-    console.log(`Let's try again, ${user}`);
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-    console.log(`Let's try again, ${user}`);
-  }
-};
-
-const generateOperation = () => {
-  const randomIndex = getRandom(0, 2);
-  if (randomIndex === 0) return '+';
-  if (randomIndex === 1) return '-';
-  if (randomIndex === 2) return '*';
-  return null;
-};
-
-const getCorrectCalculation = (num1, num2, operation) => {
-  if (operation === '+') return num1 + num2;
-  if (operation === '-') return num1 - num2;
-  if (operation === '*') return num1 * num2;
-  return null;
-};
-
-const isEven = num => num % 2 === 0;
-
-const isCorrectAnswer = (number, answer) => {
-  if (isEven(number) && answer === 'yes') return true;
-  if (!isEven(number) && answer === 'no') return true;
-  return false;
-};
-
-export const playBrainEven = () => {
-  displayGreeting();
-  displayGameDescription('brain-even');
+export const playGame = (game, getQuestionAnswer) => {
+  console.log('Welcome to the Brain Games!');
+  displayGameDescription(game);
 
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
@@ -68,52 +29,23 @@ export const playBrainEven = () => {
   const iter = (counter) => {
     if (counter === questionsAmount) {
       console.log(`Congratulations, ${userName}`);
-      return null;
+      return;
     }
 
-    const randomNumber = getRandom(minNumber, maxNumber);
-    console.log(`Question: ${randomNumber}`);
+    const questionAnswer = getQuestionAnswer();
+    const question = car(questionAnswer);
+    const correctAnswer = cdr(questionAnswer);
+    console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('Your answer: ');
 
-    if (isCorrectAnswer(randomNumber, userAnswer)) {
+    if (correctAnswer === userAnswer) {
       console.log('Correct!');
-      return iter(counter + 1);
+      iter(counter + 1);
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+      console.log(`Let's try again, ${userName}`);
     }
-    return getFailMessage(userName, userAnswer, isEven(randomNumber));
-  };
-  iter(0);
-};
-
-export const playBrainCalc = () => {
-  displayGreeting();
-  displayGameDescription('brain-calc');
-
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-
-  const iter = (counter) => {
-    if (counter === questionsAmount) {
-      console.log(`Congratulations, ${userName}`);
-      return null;
-    }
-
-    const firstOperand = getRandom(0, 100);
-    const lastOperand = getRandom(0, 100);
-    const operation = generateOperation();
-    const calculation = getCorrectCalculation(firstOperand, lastOperand, operation);
-
-    console.log(`Question: ${firstOperand} ${operation} ${lastOperand}`);
-
-    const userAnswer = readlineSync.question('Your answer: ');
-
-    if (calculation === +userAnswer) {
-      console.log('Correct!');
-      return iter(counter + 1);
-    }
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${calculation}'.`);
-    console.log(`Let's try again, ${userName}`);
-    return null;
   };
   iter(0);
 };
