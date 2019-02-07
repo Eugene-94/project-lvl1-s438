@@ -1,16 +1,20 @@
 import { cons } from 'hexlet-pairs';
+import getRandom from '../utils';
 
 import {
-  getRandom, playGame, minNumber, maxNumber,
+  playGame, minNumber, maxNumber,
 } from '..';
 
+const description = 'Answer "yes" if number even otherwise answer "no".';
+
 const getQuestion = () => getRandom(minNumber, maxNumber);
-const isEven = num => (num % 2 === 0 ? 'yes' : 'no');
+const isEven = num => (num % 2 === 0);
+const getAnswer = isEvenResult => (isEvenResult ? 'yes' : 'no');
 
 const generateQuestionAnswer = () => {
   const question = getQuestion();
-  const answer = isEven(question);
+  const answer = getAnswer(isEven(question));
   return cons(question, answer);
 };
 
-export default () => playGame('brain-even', generateQuestionAnswer);
+export default () => playGame(description, generateQuestionAnswer);

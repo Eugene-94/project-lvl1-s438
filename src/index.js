@@ -5,26 +5,9 @@ export const questionsAmount = 3;
 export const minNumber = 1;
 export const maxNumber = 100;
 
-export const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-export const displayGameDescription = (game) => {
-  switch (game) {
-    case 'brain-even':
-      console.log('Answer "yes" if number even otherwise answer "no".');
-      break;
-    case 'brain-calc':
-      console.log('What is the result of the expression?');
-      break;
-    case 'brain-gcd':
-      console.log('Find the greatest common divisor of given numbers.');
-      break;
-    default:
-  }
-};
-
-export const playGame = (game, getQuestionAnswer) => {
+export const playGame = (gameDescription, getQuestionAnswer) => {
   console.log('Welcome to the Brain Games!');
-  displayGameDescription(game);
+  console.log(gameDescription);
 
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);

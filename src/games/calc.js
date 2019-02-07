@@ -1,8 +1,11 @@
 import { cons } from 'hexlet-pairs';
+import getRandom from '../utils';
 
 import {
-  getRandom, playGame, minNumber, maxNumber,
+  playGame, minNumber, maxNumber,
 } from '..';
+
+const description = 'What is the result of the expression?';
 
 const generateOperation = () => {
   const randomIndex = getRandom(0, 2);
@@ -27,4 +30,4 @@ const generateQuestionAnswer = () => {
   return cons(question, answer);
 };
 
-export default () => playGame('brain-calc', generateQuestionAnswer);
+export default () => playGame(description, generateQuestionAnswer);

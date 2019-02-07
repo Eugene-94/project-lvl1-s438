@@ -1,8 +1,11 @@
 import { cons } from 'hexlet-pairs';
+import getRandom from '../utils';
 
 import {
-  getRandom, playGame, minNumber, maxNumber,
+  playGame, minNumber, maxNumber,
 } from '..';
+
+const description = 'Find the greatest common divisor of given numbers.';
 
 const getGcd = (a, b) => {
   if (b === 0) return a;
@@ -18,4 +21,4 @@ const generateQuestionAnswer = () => {
   return cons(question, answer);
 };
 
-export default () => playGame('brain-gcd', generateQuestionAnswer);
+export default () => playGame(description, generateQuestionAnswer);
