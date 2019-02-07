@@ -15,6 +15,9 @@ export const displayGameDescription = (game) => {
     case 'brain-calc':
       console.log('What is the result of the expression?');
       break;
+    case 'brain-gcd':
+      console.log('Find the greatest common divisor of given numbers.');
+      break;
     default:
   }
 };
