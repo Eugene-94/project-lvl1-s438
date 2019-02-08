@@ -1,10 +1,10 @@
 import { cons } from 'hexlet-pairs';
 import getRandom from '../utils';
 
-import {
-  playGame, minNumber, maxNumber,
-} from '..';
+import playGame from '..';
 
+const minNumber = 1;
+const maxNumber = 100;
 const description = 'Answer "yes" if number even otherwise answer "no".';
 
 const getQuestion = () => getRandom(minNumber, maxNumber);

@@ -1,11 +1,9 @@
 import readlineSync from 'readline-sync';
 import { car, cdr } from 'hexlet-pairs';
 
-export const questionsAmount = 3;
-export const minNumber = 1;
-export const maxNumber = 100;
+const questionsAmount = 3;
 
-export const playGame = (gameDescription, getQuestionAnswer) => {
+const playGame = (gameDescription, getQuestionAnswer) => {
   console.log('Welcome to the Brain Games!');
   console.log(gameDescription);
 
@@ -35,3 +33,5 @@ export const playGame = (gameDescription, getQuestionAnswer) => {
   };
   iter(0);
 };
+
+export default playGame;

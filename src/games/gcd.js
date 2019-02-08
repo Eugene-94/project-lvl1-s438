@@ -1,10 +1,10 @@
 import { cons } from 'hexlet-pairs';
 import getRandom from '../utils';
 
-import {
-  playGame, minNumber, maxNumber,
-} from '..';
+import playGame from '..';
 
+const minNumber = 1;
+const maxNumber = 50;
 const description = 'Find the greatest common divisor of given numbers.';
 
 const getGcd = (a, b) => {

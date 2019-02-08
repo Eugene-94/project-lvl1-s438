@@ -1,11 +1,12 @@
 import { cons } from 'hexlet-pairs';
 import getRandom from '../utils';
 
-import {
-  playGame, minNumber, maxNumber,
-} from '..';
+import playGame from '..';
 
+const minNumber = 1;
+const maxNumber = 100;
 const description = 'What number is missing in the progression?';
+
 const progressionMaxStep = 10;
 const progressionLength = 10;
 
@@ -18,16 +19,16 @@ const getQuestion = (firstEl, step, hiddenPosition) => {
     question += i !== hiddenPosition ? `${String(element)} ` : '.. ';
   }
 
-  return question;
+  return question.trim();
 };
 
 const generateQuestionAnswer = () => {
   const progressionStep = getRandom(1, progressionMaxStep);
   const progressionFirstElement = getRandom(minNumber, maxNumber);
-  const hiddenPosition = getRandom(1, progressionLength);
+  const hiddenElementPosition = getRandom(1, progressionLength);
 
-  const question = getQuestion(progressionFirstElement, progressionStep, hiddenPosition);
-  const answer = String(progressionFirstElement + (hiddenPosition) * progressionStep);
+  const question = getQuestion(progressionFirstElement, progressionStep, hiddenElementPosition);
+  const answer = String(progressionFirstElement + (hiddenElementPosition) * progressionStep);
   return cons(question, answer);
 };
 

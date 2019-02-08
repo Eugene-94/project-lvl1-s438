@@ -1,10 +1,10 @@
 import { cons } from 'hexlet-pairs';
 import getRandom from '../utils';
 
-import {
-  playGame, minNumber, maxNumber,
-} from '..';
+import playGame from '..';
 
+const minNumber = 1;
+const maxNumber = 50;
 const description = 'What is the result of the expression?';
 
 const generateOperation = () => {
