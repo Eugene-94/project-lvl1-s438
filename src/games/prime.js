@@ -3,15 +3,17 @@ import getRandom from '../utils';
 
 import playGame from '..';
 
-const minNumber = 2;
+const minNumber = -50;
 const maxNumber = 50;
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const getQuestion = () => getRandom(minNumber, maxNumber);
 const isPrime = (num) => {
+  if (num === 1) return false;
+  const cycleLimit = Math.floor(Math.sqrt(Math.abs(num)));
   let prime = true;
-  for (let i = 2; i <= Math.floor(Math.sqrt(num)); i += 1) {
-    if (num % i === 0) {
+  for (let i = 2; i <= cycleLimit; i += 1) {
+    if (Math.abs(num) % i === 0) {
       prime = false;
       break;
     }
